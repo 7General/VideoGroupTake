@@ -16,6 +16,7 @@
 		22309ED2202951A9000B3A2A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22309ED1202951A9000B3A2A /* MainViewController.m */; };
 		22309ED620297DA0000B3A2A /* QRScannViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22309ED520297DA0000B3A2A /* QRScannViewController.m */; };
 		22309EDC20297E6B000B3A2A /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 22309EDA20297E6B000B3A2A /* UIView+Addition.m */; };
+		22886280203FBC560024E9D5 /* TakePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2288627F203FBC560024E9D5 /* TakePhotoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		22309ED520297DA0000B3A2A /* QRScannViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRScannViewController.m; sourceTree = "<group>"; };
 		22309EDA20297E6B000B3A2A /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
 		22309EDB20297E6B000B3A2A /* UIView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
+		2288627E203FBC560024E9D5 /* TakePhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TakePhotoViewController.h; sourceTree = "<group>"; };
+		2288627F203FBC560024E9D5 /* TakePhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TakePhotoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,7 @@
 		22309EB720295004000B3A2A /* VideoTake */ = {
 			isa = PBXGroup;
 			children = (
+				2288627D203FBC360024E9D5 /* TakePhotoViewController */,
 				22309ED320297D86000B3A2A /* QRScann */,
 				22309ECF20295195000B3A2A /* Main */,
 				22309ECE2029501D000B3A2A /* Basic */,
@@ -108,6 +112,15 @@
 				22309ED520297DA0000B3A2A /* QRScannViewController.m */,
 			);
 			path = QRScann;
+			sourceTree = "<group>";
+		};
+		2288627D203FBC360024E9D5 /* TakePhotoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2288627E203FBC560024E9D5 /* TakePhotoViewController.h */,
+				2288627F203FBC560024E9D5 /* TakePhotoViewController.m */,
+			);
+			path = TakePhotoViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +198,7 @@
 				22309EC820295004000B3A2A /* main.m in Sources */,
 				22309EDC20297E6B000B3A2A /* UIView+Addition.m in Sources */,
 				22309ED620297DA0000B3A2A /* QRScannViewController.m in Sources */,
+				22886280203FBC560024E9D5 /* TakePhotoViewController.m in Sources */,
 				22309EBA20295004000B3A2A /* AppDelegate.m in Sources */,
 				22309ED2202951A9000B3A2A /* MainViewController.m in Sources */,
 			);
