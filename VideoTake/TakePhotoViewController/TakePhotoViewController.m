@@ -33,6 +33,7 @@
     [self initView];
 }
 - (void)initView {
+    self.title = @"拍照";
     /* 拍照 */
     UIButton * takeVideo = [UIButton buttonWithType:UIButtonTypeCustom];
     takeVideo.center = CGPointMake(SW * 0.5, SH - 50);
@@ -124,7 +125,6 @@
 
 
 #pragma mark - PRIVATE FUNCATION
-
 /**
  校验手机能否支持摄像功能
  */
