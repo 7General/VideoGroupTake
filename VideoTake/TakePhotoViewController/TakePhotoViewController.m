@@ -110,7 +110,6 @@
     }
     //提交会话配置
     [self.captureSession commitConfiguration];
-    
 }
 
 #pragma mark - VIEW LIFE
