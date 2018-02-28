@@ -6,11 +6,11 @@
 //  Copyright © 2018年 zzg. All rights reserved.
 //
 
-#import "LDPressButton.h"
+#import "TakePressButton.h"
 
 
 
-@interface LDPressButton ()
+@interface TakePressButton ()
 /* 计时时长 */
 @property (nonatomic, assign) float  interval;
 
@@ -36,7 +36,7 @@
 
 @end
 
-@implementation LDPressButton
+@implementation TakePressButton
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

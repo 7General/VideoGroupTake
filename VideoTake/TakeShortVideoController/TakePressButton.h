@@ -29,6 +29,6 @@ typedef enum : NSUInteger {
 typedef void(^actionState)(LDPressButtonState state);
 
 
-@interface LDPressButton : UIView
+@interface TakePressButton : UIView
 @property (nonatomic, copy) actionState  buttonAction;
 @end
