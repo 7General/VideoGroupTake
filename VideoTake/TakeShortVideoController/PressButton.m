@@ -18,8 +18,9 @@
 @property (nonatomic, strong) UIView * maskShapView;
 @property (nonatomic, strong) UIView * pressShapView;
 
-
+@property (nonatomic, assign) CGFloat  increTime;
 @property (nonatomic, strong) UIView * redView;
+@property (nonatomic, strong) CADisplayLink * link;
 @end
 
 @implementation PressButton
@@ -49,16 +50,23 @@
 }
 
 -(void)initView {
+    
+    self.increTime = 0.0;
     self.backgroundColor = [UIColor lightGrayColor];
     UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressClick:)];
     [self addGestureRecognizer:longPress];
     
     
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-    view.backgroundColor = [UIColor lightGrayColor];
-    [self addSubview:view];
+//    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+//    view.backgroundColor = [UIColor lightGrayColor];
+//    [self addSubview:view];
     
-    self.redView = view;
+//    self.redView = view;
+}
+
+-(void)linkRun {
+    self.increTime += 1/60.0;
+    [self setNeedsDisplay];
 }
 
 -(void)longPressClick:(UILongPressGestureRecognizer *)gestureRecognizer {
@@ -67,16 +75,21 @@
         case UIGestureRecognizerStateBegan:
         {
             [self setupStateBeginState];
+            _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(linkRun)];
+            [_link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+            [_link setPaused:NO];
         }
             break;
         case UIGestureRecognizerStateChanged:
         {
-            
         }
             break;
         case UIGestureRecognizerStateEnded:
         {
+
+            [_link setPaused:YES];
             [self setNeedsDisplay];
+            
         }
             break;
             
@@ -86,21 +99,34 @@
 }
 
 -(void)drawRect:(CGRect)rect {
-    self.maskShapView = [[UIView alloc] init];
-    self.maskShapView.center = self.center;
-    self.maskShapView.layer.cornerRadius = 50;
-    self.maskShapView.layer.masksToBounds = YES;
-    self.maskShapView.backgroundColor = [UIColor whiteColor];
-    self.maskShapView.bounds = CGRectMake(0, 0, 100, 100);
-    [self addSubview:self.maskShapView];
     
-    self.pressShapView = [[UIView alloc] init];
-    self.pressShapView.center = self.maskShapView.center;
-    self.pressShapView.layer.cornerRadius = 30;
-    self.pressShapView.layer.masksToBounds = YES;
-    self.pressShapView.backgroundColor = [UIColor greenColor];
-    self.pressShapView.bounds = CGRectMake(0, 0, 60, 60);
-    [self addSubview:self.pressShapView];
+    UIBezierPath * progressPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.bounds.size.width * 0.5];
+    CAShapeLayer * progressLayer = [[CAShapeLayer alloc] init];
+    progressLayer.fillColor = [UIColor clearColor].CGColor;
+    progressLayer.strokeColor = [UIColor redColor].CGColor;
+    progressLayer.lineWidth = 4;
+    progressLayer.lineCap = kCALineCapRound;
+    progressLayer.path = progressPath.CGPath;
+    progressLayer.strokeEnd = self.increTime/5.0;
+    NSLog(@"-----------incretime:%f",self.increTime/10.0);
+    [self.layer addSublayer:progressLayer];
+    
+    
+//    self.maskShapView = [[UIView alloc] init];
+//    self.maskShapView.center = self.center;
+//    self.maskShapView.layer.cornerRadius = 50;
+//    self.maskShapView.layer.masksToBounds = YES;
+//    self.maskShapView.backgroundColor = [UIColor whiteColor];
+//    self.maskShapView.bounds = CGRectMake(0, 0, 100, 100);
+//    [self addSubview:self.maskShapView];
+//    
+//    self.pressShapView = [[UIView alloc] init];
+//    self.pressShapView.center = self.maskShapView.center;
+//    self.pressShapView.layer.cornerRadius = 30;
+//    self.pressShapView.layer.masksToBounds = YES;
+//    self.pressShapView.backgroundColor = [UIColor greenColor];
+//    self.pressShapView.bounds = CGRectMake(0, 0, 60, 60);
+//    [self addSubview:self.pressShapView];
     
     
     

@@ -14,6 +14,7 @@
 @property (nonatomic, strong) CAShapeLayer * presButtonLayer;
 
 
+
 @end
 
 @implementation TakeShortVideoViewController
@@ -22,6 +23,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.title = @"拍摄短视频";
+//    self.increTime = 0.0f;
+    
+    PressButton * pre = [[PressButton alloc] initWithFrame:CGRectMake(200, 400, 200, 200)];
+    pre.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:pre];
+    
+    
+    
     
     LDPressButton * press = [[LDPressButton alloc] initWithFrame:CGRectMake(100, 100, 200, 200)];
     [self.view addSubview:press];
@@ -32,6 +41,8 @@
                 break;
             case Moving:
                 NSLog(@"-------moving");
+//                self.increTime += 1/60.0;
+//                [self takeRecodeButton:self.increTime];
                 break;
             case WillCancle:
                 NSLog(@"-------WillCancle");
@@ -52,6 +63,8 @@
     
 }
 
+
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 //    [self dractFunc];
 //    [self takeRecodeButton];
@@ -59,7 +72,7 @@
     
     
 }
-- (void)takeRecodeButton {
+- (void)takeRecodeButton:(CGFloat)increTime {
     
 }
 

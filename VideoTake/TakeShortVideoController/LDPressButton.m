@@ -26,8 +26,8 @@
 
 @property (nonatomic, strong) CADisplayLink * link;
 
-@property (nonatomic, assign) float  tempInterval;
-@property (nonatomic, assign) float  progress;
+@property (nonatomic, assign) CGFloat  tempInterval;
+@property (nonatomic, assign) CGFloat  progress;
 @property (nonatomic, assign) BOOL  isTimeOut;
 @property (nonatomic, assign) BOOL  isPressed;
 @property (nonatomic, assign) BOOL  isCancel;
