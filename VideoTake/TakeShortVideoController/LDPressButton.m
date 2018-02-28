@@ -122,7 +122,6 @@
 }
 
 -(void)linkRun {
-    NSLog(@"-\n\n-------linkRun");
     self.tempInterval += 1/60.0;
     self.progress = self.tempInterval/self.interval;
     
