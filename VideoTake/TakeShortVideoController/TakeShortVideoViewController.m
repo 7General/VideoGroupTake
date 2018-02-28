@@ -7,8 +7,12 @@
 //
 
 #import "TakeShortVideoViewController.h"
+#import "PressButton.h"
+#import "LDPressButton.h"
 
 @interface TakeShortVideoViewController ()
+@property (nonatomic, strong) CAShapeLayer * presButtonLayer;
+
 
 @end
 
@@ -16,22 +20,73 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.title = @"拍摄短视频";
+    
+    LDPressButton * press = [[LDPressButton alloc] initWithFrame:CGRectMake(100, 100, 200, 200)];
+    [self.view addSubview:press];
+    [press setButtonAction:^(LDPressButtonState state) {
+        switch (state) {
+            case Begin:
+                NSLog(@"-------begin");
+                break;
+            case Moving:
+                NSLog(@"-------moving");
+                break;
+            case WillCancle:
+                NSLog(@"-------WillCancle");
+                break;
+            case DidCancle:
+                NSLog(@"-------DidCancle");
+                break;
+            case End:
+                NSLog(@"-------End");
+                break;
+            case Click:
+                NSLog(@"-------Click");
+                break;
+            default:
+                break;
+        }
+    }];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    [self dractFunc];
+//    [self takeRecodeButton];
+    
+    
+    
+}
+- (void)takeRecodeButton {
+    
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+
+-(void)dractFunc {
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:self.view.center radius:100 startAngle: - M_PI_2 endAngle:M_PI * 2 clockwise:YES];
+   CAShapeLayer *  maskLayer = [CAShapeLayer layer];
+    maskLayer.backgroundColor = [UIColor clearColor].CGColor;
+    maskLayer.path = bezierPath.CGPath;
+    maskLayer.strokeColor = [UIColor greenColor].CGColor;
+    maskLayer.fillColor = [UIColor whiteColor].CGColor;
+    maskLayer.lineWidth = 20;
+    maskLayer.fillRule = kCAFillRuleEvenOdd;
+    maskLayer.lineCap = kCALineCapRound;
+    [self.view.layer addSublayer:maskLayer];
+    
+
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    animation.fromValue = @0.0;
+    animation.duration = 2.0f;
+    animation.repeatCount = 0;
+    [animation setValue:@"BasicAnimationEnd" forKey:@"animationName"];
+    [maskLayer addAnimation:animation forKey:@"BasicAnimationEnd"];
 }
-*/
+
 
 @end
+

@@ -11,6 +11,7 @@
 #import "QRScannViewController.h"
 #import "TakePhotoViewController.h"
 #import "TakeVideoViewController.h"
+#import "TakeShortVideoViewController.h"
 
 typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 
@@ -21,7 +22,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"拍摄照片";
+    self.title = @"视频照片";
     
     UIButton * takeVideo = [UIButton buttonWithType:UIButtonTypeCustom];
     takeVideo.frame = CGRectMake(100, 100, 100, 100);
@@ -31,11 +32,18 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     [self.view addSubview:takeVideo];
     
     UIButton * takePhoto = [UIButton buttonWithType:UIButtonTypeCustom];
-    takePhoto.frame = CGRectMake(100, 200, 100, 100);
+    takePhoto.frame = CGRectMake(100, 210, 100, 100);
     takePhoto.backgroundColor = [UIColor redColor];
     [takePhoto setTitle:@"拍摄视频" forState:UIControlStateNormal];
     [takePhoto addTarget:self action:@selector(takeVideoClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:takePhoto];
+    
+    UIButton * takeShortVideo = [UIButton buttonWithType:UIButtonTypeCustom];
+    takeShortVideo.frame = CGRectMake(100, 320, 100, 100);
+    takeShortVideo.backgroundColor = [UIColor redColor];
+    [takeShortVideo setTitle:@"拍摄短视频" forState:UIControlStateNormal];
+    [takeShortVideo addTarget:self action:@selector(takeShortVideoClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:takeShortVideo];
     
 }
 
@@ -50,6 +58,13 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     TakeVideoViewController * takeVideo = [[TakeVideoViewController alloc] init];
     [self.navigationController pushViewController:takeVideo animated:YES];
 }
+
+-(void)takeShortVideoClick {
+    TakeShortVideoViewController * takeShort = [[TakeShortVideoViewController alloc] init];
+    [self.navigationController pushViewController:takeShort animated:YES];
+}
+
+
 
 
 

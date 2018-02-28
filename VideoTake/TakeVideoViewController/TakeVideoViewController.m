@@ -71,11 +71,11 @@
     [self.view addSubview:takeChange];
     
     /* 闪光灯 */
-    UIButton * takeFlash = [UIButton buttonWithType:UIButtonTypeCustom];
-    takeFlash.frame = CGRectMake(SW - 50, takeVideo.frame.origin.y, 50, 50);
-    [takeFlash setImage:[UIImage imageNamed:@"takeLight"] forState:UIControlStateNormal];
-    [takeFlash addTarget:self action:@selector(takeFlashClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:takeFlash];
+//    UIButton * takeFlash = [UIButton buttonWithType:UIButtonTypeCustom];
+//    takeFlash.frame = CGRectMake(SW - 50, takeVideo.frame.origin.y, 50, 50);
+//    [takeFlash setImage:[UIImage imageNamed:@"takeLight"] forState:UIControlStateNormal];
+//    [takeFlash addTarget:self action:@selector(takeFlashClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:takeFlash];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -211,6 +211,37 @@
     else{
         [self.captureMovieFileOutput stopRecording];//停止录制
     }
+}
+
+- (void)takeChangeClick {
+    AVCaptureDevice *currentDevice=[self.captureDeviceInput device];
+    AVCaptureDevicePosition currentPosition=[currentDevice position];
+    /* 新设备名称 */
+    AVCaptureDevice *toChangeDevice;
+    AVCaptureDevicePosition toChangePosition=AVCaptureDevicePositionFront;
+    if (currentPosition==AVCaptureDevicePositionUnspecified||currentPosition==AVCaptureDevicePositionFront) {
+        toChangePosition=AVCaptureDevicePositionBack;
+    }
+    toChangeDevice=[self getCameraDeviceWithPosition:toChangePosition];
+    
+    //创建输入流
+    NSError *error = nil;
+    AVCaptureDeviceInput *toChangeDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:toChangeDevice error:&error];
+    if (error) {
+        NSLog(@"获取输入对象流%@",error.localizedDescription);
+        return;
+    }
+    //改变会话的配置前一定要先开启配置，配置完成后提交配置改变
+    [self.captureSession beginConfiguration];
+    //移除原有输入对象
+    [self.captureSession removeInput:self.captureDeviceInput];
+    //添加新的输入对象
+    if ([self.captureSession canAddInput:toChangeDeviceInput]) {
+        [self.captureSession addInput:toChangeDeviceInput];
+        self.captureDeviceInput=toChangeDeviceInput;
+    }
+    //提交会话配置
+    [self.captureSession commitConfiguration];
 }
 
 //屏幕旋转时调整视频预览图层的方向

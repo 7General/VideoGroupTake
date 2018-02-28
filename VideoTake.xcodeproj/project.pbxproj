@@ -19,6 +19,8 @@
 		22886280203FBC560024E9D5 /* TakePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2288627F203FBC560024E9D5 /* TakePhotoViewController.m */; };
 		22886284203FE9980024E9D5 /* TakeVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22886283203FE9980024E9D5 /* TakeVideoViewController.m */; };
 		228862882043F2280024E9D5 /* TakeShortVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 228862872043F2280024E9D5 /* TakeShortVideoViewController.m */; };
+		2288628B2043F9CB0024E9D5 /* PressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2288628A2043F9CB0024E9D5 /* PressButton.m */; };
+		228862BA204656E60024E9D5 /* LDPressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 228862B9204656E60024E9D5 /* LDPressButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,10 @@
 		22886283203FE9980024E9D5 /* TakeVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TakeVideoViewController.m; sourceTree = "<group>"; };
 		228862862043F2280024E9D5 /* TakeShortVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TakeShortVideoViewController.h; sourceTree = "<group>"; };
 		228862872043F2280024E9D5 /* TakeShortVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TakeShortVideoViewController.m; sourceTree = "<group>"; };
+		228862892043F9CB0024E9D5 /* PressButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PressButton.h; sourceTree = "<group>"; };
+		2288628A2043F9CB0024E9D5 /* PressButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PressButton.m; sourceTree = "<group>"; };
+		228862B8204656E60024E9D5 /* LDPressButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDPressButton.h; sourceTree = "<group>"; };
+		228862B9204656E60024E9D5 /* LDPressButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDPressButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +151,10 @@
 			children = (
 				228862862043F2280024E9D5 /* TakeShortVideoViewController.h */,
 				228862872043F2280024E9D5 /* TakeShortVideoViewController.m */,
+				228862892043F9CB0024E9D5 /* PressButton.h */,
+				2288628A2043F9CB0024E9D5 /* PressButton.m */,
+				228862B8204656E60024E9D5 /* LDPressButton.h */,
+				228862B9204656E60024E9D5 /* LDPressButton.m */,
 			);
 			path = TakeShortVideoController;
 			sourceTree = "<group>";
@@ -221,6 +231,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				22309EBD20295004000B3A2A /* ViewController.m in Sources */,
+				2288628B2043F9CB0024E9D5 /* PressButton.m in Sources */,
+				228862BA204656E60024E9D5 /* LDPressButton.m in Sources */,
 				22309EC820295004000B3A2A /* main.m in Sources */,
 				22309EDC20297E6B000B3A2A /* UIView+Addition.m in Sources */,
 				22309ED620297DA0000B3A2A /* QRScannViewController.m in Sources */,
