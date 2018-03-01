@@ -6,6 +6,9 @@
 //  Copyright © 2018年 zzg. All rights reserved.
 //
 
+#define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
+
 #import "TakeShortVideoViewController.h"
 #import "PressButton.h"
 #import "TakePressButton.h"
@@ -19,11 +22,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor grayColor];
     self.title = @"拍摄短视频";
     
-    TakePressButton * press = [[TakePressButton alloc] initWithFrame:CGRectMake(100, 100, 200, 200)];
-    [self.view addSubview:press];
+    UIView * toolView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREENHEIGHT - 180, SCREENWIDTH, 180)];
+    toolView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:toolView];
+    
+    CGFloat pW = 100;
+    CGFloat pH = 100;
+    CGFloat pX = SCREENWIDTH * 0.5 - pW * 0.5;
+    CGFloat pY = 180 * 0.5 - pH * 0.5;
+    
+    TakePressButton * press = [[TakePressButton alloc] initWithFrame:CGRectMake(pX, pY, pW, pH)];
+    press.backgroundColor = [UIColor redColor];
+    [toolView addSubview:press];
     [press setButtonAction:^(LDPressButtonState state) {
         switch (state) {
             case Begin:

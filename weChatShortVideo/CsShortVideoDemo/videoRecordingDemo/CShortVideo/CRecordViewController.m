@@ -136,6 +136,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
                                                   ProgressBarWidth:_progressBarWidth
                                                  ProgressBackColor:_progressBackColor
                                                      ProgressColor:_progressColor];
+    toolView.backgroundColor = [UIColor yellowColor];
     toolView.delegate  = self;
     [self.view addSubview:toolView];
 }

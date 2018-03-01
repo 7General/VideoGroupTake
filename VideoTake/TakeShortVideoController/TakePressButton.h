@@ -30,5 +30,9 @@ typedef void(^actionState)(LDPressButtonState state);
 
 
 @interface TakePressButton : UIView
+
 @property (nonatomic, copy) actionState  buttonAction;
+
+
+
 @end

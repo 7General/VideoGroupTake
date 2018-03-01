@@ -37,6 +37,8 @@
 @end
 
 @implementation TakePressButton
+
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -56,6 +58,7 @@
     UILongPressGestureRecognizer * lognPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
     [self addGestureRecognizer:lognPress];
     
+    
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture)];
     [self addGestureRecognizer:tap];
 }
@@ -69,11 +72,15 @@
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
         {
-            [self.link setPaused:NO];
-            self.isPressed = YES;
-            [self.layer addSublayer:self.progressLayer];
-            if (self.buttonAction) {
-                self.buttonAction(Begin);
+            CGPoint  point = [gesture locationInView:self];
+            BOOL isContains = CGRectContainsPoint(self.ringFram,point);
+            if (isContains) {
+                [self.link setPaused:NO];
+                self.isPressed = YES;
+                [self.layer addSublayer:self.progressLayer];
+                if (self.buttonAction) {
+                    self.buttonAction(Begin);
+                }
             }
         }
         break;
@@ -212,6 +219,37 @@
 
 
 -(void)drawRect:(CGRect)rect {
+//    [self releaseView];
+    [self debugView];
+}
+-(void)debugView {
+    CGFloat width = self.bounds.size.width;
+    CGFloat mainWidth = width * 0.5;
+    CGRect mainFrame = CGRectMake(mainWidth * 0.5, mainWidth * 0.5 , mainWidth, mainWidth);
+    CGRect ringFrame = CGRectInset(mainFrame,-0.4 * mainWidth / 2.0,-0.4 * mainWidth / 2.0);
+    self.ringFram = ringFrame;
+    if (self.isPressed) {
+        ringFrame = CGRectInset(mainFrame,-0.6*mainWidth/2.0,-0.6 * mainWidth/2.0);
+    }
+    UIBezierPath * ringPath = [UIBezierPath bezierPathWithRoundedRect:ringFrame cornerRadius:ringFrame.size.width / 2.0];
+    self.ringLayer.path = ringPath.CGPath;
+    if (self.isPressed) {
+        mainWidth *= 0.8;
+        mainFrame = CGRectMake((width - mainWidth) * 0.5, (width - mainWidth) * 0.5, mainWidth, mainWidth);
+    }
+    UIBezierPath * mainPath = [UIBezierPath bezierPathWithRoundedRect:mainFrame cornerRadius:mainWidth * 0.5];
+    self.centerLayer.path = mainPath.CGPath;
+    
+    if (self.isPressed) {
+        CGRect progressFrame = CGRectInset(ringFrame,2.0,2.0);
+        UIBezierPath * progressPath = [UIBezierPath bezierPathWithRoundedRect:progressFrame cornerRadius:progressFrame.size.width * 0.5];
+        self.progressLayer.path = progressPath.CGPath;
+        self.progressLayer.strokeEnd = self.progress;
+    }
+}
+
+
+-(void)releaseView {
     CGFloat width = self.bounds.size.width;
     CGFloat mainWidth = width * 0.5;
     CGRect mainFrame = CGRectMake(mainWidth * 0.5, mainWidth * 0.5 , mainWidth, mainWidth);
