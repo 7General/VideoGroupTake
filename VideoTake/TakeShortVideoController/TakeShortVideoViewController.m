@@ -40,6 +40,8 @@
 @property (assign,nonatomic) CGRect *lastBounds;//旋转的前大小
 @property (assign,nonatomic) UIBackgroundTaskIdentifier backgroundTaskIdentifier;//后台任务标识
 
+
+@property (nonatomic, strong) AVPlayer * player;
 @end
 
 @implementation TakeShortVideoViewController
@@ -51,14 +53,27 @@
     
     NSString * path1 = [[NSBundle mainBundle] pathForResource:@"123.mp4" ofType:nil];
     AVPlayerItem*playerItem=[AVPlayerItem playerItemWithURL:[NSURL fileURLWithPath:path1]];
-    
-    AVPlayer *player= [AVPlayer playerWithPlayerItem:playerItem];
-    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+    self.player= [AVPlayer playerWithPlayerItem:playerItem];
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     playerLayer.frame = self.view.bounds;
-    player.muted = YES;
+    self.player.muted = YES;
     [self.view.layer addSublayer:playerLayer];
-    [player play];
+    [self.player play];
+//
+//    self.playerView = [[PlayerView alloc]initWithFrame:self.view.bounds];
+//    self.playerView.muted = YES;
+//    [self.view insertSubview:self.playerView atIndex:1];
 
+//    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL fileURLWithPath:path1]];
+//    self.player = [AVPlayer playerWithPlayerItem:playerItem];
+//    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+//    playerLayer.frame = self.view.bounds;
+//    [self.view.layer addSublayer:playerLayer];
+//    [self.player play];
+    
+    
+    
+//
     NSString * path = [[NSBundle mainBundle] pathForResource:@"123.mp4" ofType:nil];
     NSURL * url = [NSURL fileURLWithPath:path];
     [self prepareToPublishWithFileURL:url];
