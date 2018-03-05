@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "PlayerView.h"
 
 @interface AppDelegate ()
 
@@ -28,8 +29,19 @@
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+//    PlayerView * player = [[PlayerView alloc] init];
+//    if (player.playState == AVPlayerStatusUnknown) {
+//        UIDevice* device = [UIDevice currentDevice];
+//        if ([device respondsToSelector:@selector(isMultitaskingSupported)]) {
+//            if(device.multitaskingSupported) {
+//                if(device.multitaskingSupported) {
+//                    if (player.backgroundTaskIdentifier ==UIBackgroundTaskInvalid) {
+//                        player.backgroundTaskIdentifier = [[UIApplication sharedApplication]beginBackgroundTaskWithExpirationHandler:NULL];
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 
@@ -40,7 +52,13 @@
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+//    PlayerView * player = [[PlayerView alloc] init];
+//    
+//        if (player.backgroundTaskIdentifier !=UIBackgroundTaskInvalid) {
+//            [[UIApplication sharedApplication] endBackgroundTask: player.backgroundTaskIdentifier];
+//            player.backgroundTaskIdentifier = UIBackgroundTaskInvalid;
+//        }
+    
 }
 
 

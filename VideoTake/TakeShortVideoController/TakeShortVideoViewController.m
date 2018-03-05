@@ -41,7 +41,6 @@
 @property (assign,nonatomic) UIBackgroundTaskIdentifier backgroundTaskIdentifier;//后台任务标识
 
 
-@property (nonatomic, strong) AVPlayer * player;
 @end
 
 @implementation TakeShortVideoViewController
@@ -50,37 +49,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
     self.title = @"拍摄短视频";
-    
-    NSString * path1 = [[NSBundle mainBundle] pathForResource:@"123.mp4" ofType:nil];
-    AVPlayerItem*playerItem=[AVPlayerItem playerItemWithURL:[NSURL fileURLWithPath:path1]];
-    self.player= [AVPlayer playerWithPlayerItem:playerItem];
-    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
-    playerLayer.frame = self.view.bounds;
-    self.player.muted = YES;
-    [self.view.layer addSublayer:playerLayer];
-    [self.player play];
-//
-//    self.playerView = [[PlayerView alloc]initWithFrame:self.view.bounds];
-//    self.playerView.muted = YES;
-//    [self.view insertSubview:self.playerView atIndex:1];
-
-//    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL fileURLWithPath:path1]];
-//    self.player = [AVPlayer playerWithPlayerItem:playerItem];
-//    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
-//    playerLayer.frame = self.view.bounds;
-//    [self.view.layer addSublayer:playerLayer];
-//    [self.player play];
-    
-    
-    
-//
-    NSString * path = [[NSBundle mainBundle] pathForResource:@"123.mp4" ofType:nil];
+    NSString * path = [[NSBundle mainBundle]pathForResource:@"123.mp4" ofType:nil];
     NSURL * url = [NSURL fileURLWithPath:path];
     [self prepareToPublishWithFileURL:url];
-//
-//
-//
     return;
+    
+    
     
     self.targetSize = AVAssetExportPreset640x480;
     [self steupTakePhoto];
@@ -129,6 +103,7 @@
     if (!self.captureSession.isRunning) {
         [self.captureSession startRunning];
     }
+    
 }
 
 /**
@@ -165,19 +140,60 @@
 }
 
 
-//-(void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    if (self.captureSession) {
-//        [self.captureSession startRunning];
-//    }
-//}
-//
-//-(void)viewDidDisappear:(BOOL)animated {
-//    [super viewDidDisappear:animated];
-//    if (self.captureSession) {
-//        [self.captureSession stopRunning];
-//    }
-//}
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.captureSession) {
+        [self.captureSession startRunning];
+    }
+    
+    // 开始接受远程控制
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+   
+    if (self.captureSession) {
+        [self.captureSession stopRunning];
+    }
+    
+    // 接触远程控制
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
+    
+}
+
+// 重写父类成为响应者方法
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+//重写父类方法,接受外部事件的处理
+- (void) remoteControlReceivedWithEvent: (UIEvent *) receivedEvent {
+    if (receivedEvent.type == UIEventTypeRemoteControl) {
+        switch (receivedEvent.subtype) { // 得到事件类型
+            case UIEventSubtypeRemoteControlTogglePlayPause: // 暂停 ios6
+               [self.playerView play]; // 调用你所在项目的暂停按钮的响应方法 下面的也是如此
+                break;
+            case UIEventSubtypeRemoteControlPreviousTrack: // 上一首
+                [self.playerView play];
+                break;
+            case UIEventSubtypeRemoteControlNextTrack: // 下一首
+                [self.playerView play];
+                break;
+            case UIEventSubtypeRemoteControlPlay: //播放
+                [self.playerView play];
+                break;
+            case UIEventSubtypeRemoteControlPause: // 暂停 ios7
+                [self.playerView play];
+                break;
+            default:
+                break;
+        }
+    }
+}
 
 #pragma mark - PRIVATE FUNCATION
 /**

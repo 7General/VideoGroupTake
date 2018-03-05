@@ -64,6 +64,10 @@
         } else {
             [self.player replaceCurrentItemWithPlayerItem:_playerItem];
         }
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+        [session setActive:YES error:nil];
+        
         self.player.muted = _muted;
         [self play];
     }
@@ -87,11 +91,10 @@
         [self.player pause];
     }
 }
-//-(NSInteger)isPlaying {
-//    if (self.player) {
-//        [self.player status];
-//    }
-//}
+
+- (AVPlayerStatus)playState {
+    return self.player.status;
+}
 
 - (void)playbackFinished:(NSNotification *)notify{
     
