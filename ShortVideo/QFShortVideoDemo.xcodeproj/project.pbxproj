@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		228862C7204D3BCD0024E9D5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228862C6204D3BCD0024E9D5 /* AVFoundation.framework */; };
 		941822E41D1CC8BB0090C06B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 941822E31D1CC8BB0090C06B /* main.m */; };
 		941822E71D1CC8BB0090C06B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 941822E61D1CC8BB0090C06B /* AppDelegate.m */; };
 		941822EA1D1CC8BB0090C06B /* QFShortVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 941822E91D1CC8BB0090C06B /* QFShortVideoViewController.m */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		228862C6204D3BCD0024E9D5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		941822DF1D1CC8BB0090C06B /* QFShortVideoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFShortVideoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		941822E31D1CC8BB0090C06B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		941822E51D1CC8BB0090C06B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,17 +64,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228862C7204D3BCD0024E9D5 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		228862C5204D3BCC0024E9D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				228862C6204D3BCD0024E9D5 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		941822D61D1CC8BB0090C06B = {
 			isa = PBXGroup;
 			children = (
 				941822E11D1CC8BB0090C06B /* QFShortVideoDemo */,
 				941822E01D1CC8BB0090C06B /* Products */,
+				228862C5204D3BCC0024E9D5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

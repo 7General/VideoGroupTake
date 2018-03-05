@@ -628,6 +628,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
     self.lastStartDate = [NSDate date];
     //开始录制：上移取消
+    
     [self startRecord];
 }
 - (void)QFTakeVideoButtonDidTouchUpInside{//手指在范围内离开
