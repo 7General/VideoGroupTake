@@ -33,6 +33,8 @@
 @property (nonatomic, assign) BOOL  isCancel;
 @property (nonatomic, assign) CGRect  ringFram;
 
+@property (nonatomic, assign) BOOL isTakePhoto;
+
 
 @end
 
@@ -55,17 +57,26 @@
     [self.layer addSublayer:self.ringLayer];
     [self.layer addSublayer:self.centerLayer];
     self.backgroundColor = [UIColor clearColor];
+    
     UILongPressGestureRecognizer * lognPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
     [self addGestureRecognizer:lognPress];
     
-    
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture)];
     [self addGestureRecognizer:tap];
+    
 }
 -(void)tapGesture {
+    self.isTakePhoto = YES;
     if (self.buttonAction) {
+        [self setNeedsDisplay];
+        
         self.buttonAction(Click);
     }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.isTakePhoto = NO;
+        [self setNeedsDisplay];
+    });
+    
 }
 
 -(void)longPressGesture:(UILongPressGestureRecognizer *)gesture {
@@ -160,7 +171,7 @@
 
 -(void)initData {
     self.interval = 10.0f;
-    
+    self.isTakePhoto = NO;
     self.centerColor = [UIColor whiteColor];
     self.ringColor = [[UIColor whiteColor]colorWithAlphaComponent:0.8];
     
@@ -233,10 +244,12 @@
     }
     UIBezierPath * ringPath = [UIBezierPath bezierPathWithRoundedRect:ringFrame cornerRadius:ringFrame.size.width / 2.0];
     self.ringLayer.path = ringPath.CGPath;
-    if (self.isPressed) {
+    if (self.isPressed || self.isTakePhoto) {
+        
         mainWidth *= 0.8;
         mainFrame = CGRectMake((width - mainWidth) * 0.5, (width - mainWidth) * 0.5, mainWidth, mainWidth);
     }
+    
     UIBezierPath * mainPath = [UIBezierPath bezierPathWithRoundedRect:mainFrame cornerRadius:mainWidth * 0.5];
     self.centerLayer.path = mainPath.CGPath;
     

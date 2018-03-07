@@ -45,6 +45,53 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     [takeShortVideo addTarget:self action:@selector(takeShortVideoClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:takeShortVideo];
     
+    
+    
+//
+//
+//    CGRect frames = CGRectMake(100, 100, 200, 200);
+//    UIView * bgView = [[UIView alloc] initWithFrame:frames];
+//    bgView.backgroundColor = [UIColor lightGrayColor];
+//    [self.view addSubview:bgView];
+//
+//    CGFloat mainWidth = frames.size.width * 0.5;
+//
+//    CGRect mainFrame = CGRectMake(mainWidth * 0.5, mainWidth * 0.5, mainWidth, mainWidth);
+//
+//
+//    // 外层放大
+//    CGRect ringFrame = CGRectInset(mainFrame, -0.6 * mainWidth /2.0, -0.6 * mainWidth /2.0);
+//
+//    UIBezierPath * ringPath = [UIBezierPath bezierPathWithRoundedRect:ringFrame cornerRadius:ringFrame.size.width / 2.0];
+//    CAShapeLayer * ringLayer = [[CAShapeLayer alloc] init];
+//    ringLayer.path = ringPath.CGPath;
+//    ringLayer.frame = bgView.bounds;
+//    ringLayer.fillColor = [UIColor whiteColor].CGColor;
+//    [bgView.layer addSublayer:ringLayer];
+//
+//    // 画中间园
+//    UIBezierPath * mainPath = [UIBezierPath bezierPathWithRoundedRect:mainFrame cornerRadius:mainFrame.size.width * 0.5];
+//    CAShapeLayer * centerLayer = [[CAShapeLayer alloc] init];
+//    centerLayer.path = mainPath.CGPath;
+//    centerLayer.frame = bgView.bounds;
+//    centerLayer.fillColor = [UIColor redColor].CGColor;
+//    [bgView.layer addSublayer:centerLayer];
+//
+//    // 画圈
+//    CGRect progressFrame = CGRectInset(ringFrame,2.0,2.0);
+//    UIBezierPath * progressPath = [UIBezierPath bezierPathWithRoundedRect:progressFrame cornerRadius:progressFrame.size.width * 0.5];
+//    CAShapeLayer * bLayer = [[CAShapeLayer alloc] init];
+//    bLayer.fillColor = [UIColor clearColor].CGColor;
+//    bLayer.path = progressPath.CGPath;
+//    bLayer.strokeEnd = 1;
+//    bLayer.lineWidth = 4;
+//    bLayer.frame = bgView.bounds;
+//    bLayer.strokeColor = [UIColor colorWithRed:31/255.0 green:185/255.0 blue:34/255.0 alpha:1].CGColor;
+//    [bgView.layer addSublayer:bLayer];
+    
+    
+    
+    
 }
 
 

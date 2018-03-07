@@ -49,10 +49,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
     self.title = @"拍摄短视频";
-    NSString * path = [[NSBundle mainBundle]pathForResource:@"123.mp4" ofType:nil];
-    NSURL * url = [NSURL fileURLWithPath:path];
-    [self prepareToPublishWithFileURL:url];
-    return;
+//    NSString * path = [[NSBundle mainBundle]pathForResource:@"123.mp4" ofType:nil];
+//    NSURL * url = [NSURL fileURLWithPath:path];
+//    [self prepareToPublishWithFileURL:url];
+//    return;
     
     
     
