@@ -29,12 +29,22 @@
     return self;
 }
 
+- (void)applicationBecomeActive {
+    NSLog(@"------------------------------------------------------");
+    [self play];
+}
+
+
 - (void)setup{
     _repeat = YES;
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(playbackFinished:)
                                                 name:AVPlayerItemDidPlayToEndTimeNotification
                                               object:self.player.currentItem];
+    
+    // app从后台进入前台都会调用这个方法
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationBecomeActive) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
 }
 
 #pragma mark -- setPlayerItem dataSource
