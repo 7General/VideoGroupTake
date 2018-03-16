@@ -30,7 +30,6 @@
 }
 
 - (void)applicationBecomeActive {
-    NSLog(@"------------------------------------------------------");
     [self play];
 }
 
